@@ -27,7 +27,7 @@ collections:
   - name: 'slides'
     label: 'slides'
     format: 'json'
-    folder: 'content/blog'
+    folder: 'content/slides'
     create: true
     slug: '{{slug}}'
     media_folder: static/images
