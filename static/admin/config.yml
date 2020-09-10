@@ -22,4 +22,23 @@ collections:
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: "Thumbnail",  name: "thumbnail", widget: "image", default: "/static/images/default.jpg" }
- 
+  
+
+  - name: 'slides'
+    label: 'slides'
+    format: 'json'
+    folder: 'content/blog'
+    create: true
+    slug: '{{slug}}'
+    media_folder: static/images
+    public_folder: /images
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'showlide', name: 'showslide', widget: 'boolean' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'ButtonText', name: 'buttontext', widget: 'string' }
+      - { label: 'targeturl', name: 'targeturl', widget: 'string' }
+      - { label: "Thumbnail",  name: "thumbnail", widget: "image", default: "/static/images/default.jpg" }
