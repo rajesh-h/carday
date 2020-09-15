@@ -1,22 +1,28 @@
 <template>
   <div class="container">
-    Hello
+    <Slider :slides-data="slidesData" />
+    <!-- Hello
     <li v-for="slide of slides" :key="slide.slug">
       <NuxtLink :to="slide.slug">{{ slide.title }}</NuxtLink>
-    </li>
+    </li> -->
   </div>
 </template>
 
 <script>
-export default {
-  async fetch() {
-    const posts = await this.$content('slides').fetch()
-    this.slides = posts
-  },
+import Slider from '~/components/Slider'
 
-  data() {
+export default {
+  components: {
+    Slider,
+  },
+  async asyncData({ $content, params }) {
+    const slidesData = await $content('slides')
+      .only(['title', 'thumbnail', 'description'])
+      .sortBy('createdAt', 'desc')
+      .limit(12)
+      .fetch()
     return {
-      slides: [],
+      slidesData,
     }
   },
   head() {

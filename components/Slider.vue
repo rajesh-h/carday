@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="w-full">
     <client-only>
       <vue-flux
         ref="slider"
         :options="vfOptions"
-        :images="vfImages"
+        :images="slideImages"
         :transitions="vfTransitions"
         :captions="vfCaptions"
       >
@@ -55,10 +55,12 @@ export default {
     FluxPagination,
     FluxPreloader,
   },
-  // async fetch() {
-  //   const posts = await this.$content('slides').fetch()
-  //   this.slides = posts
-  // },
+  props: {
+    slidesData: {
+      type: Object,
+      default: null,
+    },
+  },
   data: () => ({
     vfOptions: {
       allowFullscreen: false,
@@ -85,6 +87,15 @@ export default {
       'Caption for image 3',
     ],
   }),
+  computed: {
+    slideImages() {
+      const images = []
+      for (let i = 0; i < this.slidesData.length; i++) {
+        images.push(this.slidesData[i].thumbnail)
+      }
+      return images
+    },
+  },
 }
 </script>
 
