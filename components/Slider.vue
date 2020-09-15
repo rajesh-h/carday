@@ -142,10 +142,10 @@ export default {
 }
 
 .vue-flux .flux-caption {
-  background-color: transparent;
-  text-align: left;
-  margin-top: 10%;
-  width: 500px;
-  line-height: 2rem;
+  background-color: transparent !important;
+  text-align: left !important;
+  margin-top: 10% !important;
+  width: 500px !important;
+  line-height: 2rem !important;
 }
 </style>
