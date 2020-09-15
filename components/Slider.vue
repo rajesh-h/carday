@@ -12,21 +12,41 @@
           <flux-preloader />
         </template>
 
-        <template v-slot:caption>
+        <!-- <template v-slot:caption>
           <flux-caption />
+        </template> -->
+        <template v-slot:caption>
+          <flux-caption v-slot="captionProps">
+            <div
+              class="text-3xl text-white font-black bg-transparent px-6 py-4"
+            >
+              {{ captionProps.text }}
+            </div>
+            <div
+              class="text-base text-white font-semibold bg-transparent pt-0 pb-2 px-6"
+            >
+              {{ captionProps.caption.description }}
+            </div>
+            <a
+              :href="captionProps.caption.targeturl"
+              class="text-lg text-black font-bold bg-white px-4 py-2 mx-6"
+            >
+              {{ captionProps.caption.buttontext }}
+            </a>
+          </flux-caption>
         </template>
 
         <template v-slot:controls>
           <flux-controls />
         </template>
 
-        <template v-slot:pagination>
+        <!-- <template v-slot:pagination>
           <flux-pagination />
         </template>
 
         <template v-slot:index>
           <flux-index />
-        </template>
+        </template> -->
       </vue-flux>
 
       <!-- <button @click="$refs.slider.show('next')">NEXT</button> -->
@@ -39,8 +59,8 @@ import {
   VueFlux,
   FluxCaption,
   FluxControls,
-  FluxIndex,
-  FluxPagination,
+  // FluxIndex,
+  // FluxPagination,
   FluxPreloader,
 } from 'vue-flux/dist-ssr/vue-flux.umd.min.js'
 
@@ -51,8 +71,8 @@ export default {
     VueFlux,
     FluxCaption,
     FluxControls,
-    FluxIndex,
-    FluxPagination,
+    // FluxIndex,
+    // FluxPagination,
     FluxPreloader,
   },
   props: {
@@ -68,8 +88,6 @@ export default {
       autohideTime: 2500,
       autoplay: true,
       bindKeys: false,
-      width: 800,
-      height: 400,
       delay: 5000,
       enableGestures: false,
       infinite: true,
@@ -88,6 +106,10 @@ export default {
     //   'Caption for image 2',
     //   'Caption for image 3',
     // ],
+    captionProps: {
+      caption: String | Object,
+      text: String,
+    },
   }),
   computed: {
     slideImages() {
@@ -100,7 +122,12 @@ export default {
     slideCaptions() {
       const captions = []
       for (let i = 0; i < this.slidesData.length; i++) {
-        captions.push(this.slidesData[i].description)
+        captions.push({
+          description: this.slidesData[i].description,
+          targeturl: this.slidesData[i].targeturl,
+          buttontext: this.slidesData[i].buttontext,
+          text: this.slidesData[i].title,
+        })
       }
       return captions
     },
@@ -108,4 +135,17 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.vue-flux {
+  height: 80vh !important;
+  width: 100% !important;
+}
+
+.vue-flux .flux-caption {
+  background-color: transparent;
+  text-align: left;
+  margin-top: 10%;
+  width: 500px;
+  line-height: 2rem;
+}
+</style>

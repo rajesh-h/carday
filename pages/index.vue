@@ -1,22 +1,25 @@
 <template>
   <div class="container mx-auto">
-    <Header class="flow-root" />
+    <Header class="" />
     <Slider :slides-data="slidesData" />
+    <Menu class="" />
   </div>
 </template>
 
 <script>
 import Header from '~/components/Header'
 import Slider from '~/components/Slider'
+import Menu from '~/components/Menu'
 
 export default {
   components: {
     Slider,
     Header,
+    Menu,
   },
   async asyncData({ $content, params }) {
     const slidesData = await $content('slides')
-      .only(['title', 'thumbnail', 'description'])
+      // .only(['title', 'thumbnail', 'description'])
       .sortBy('createdAt', 'desc')
       .limit(12)
       .fetch()
