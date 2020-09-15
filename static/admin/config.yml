@@ -12,8 +12,6 @@ collections:
     folder: 'content/blog'
     create: true
     slug: '{{slug}}'
-    media_folder: static/images
-    public_folder: /images
     editor:
       preview: false
     fields:
@@ -30,8 +28,6 @@ collections:
     folder: 'content/slides'
     create: true
     slug: '{{slug}}'
-    media_folder: static/images
-    public_folder: /images
     editor:
       preview: false
     fields:
