@@ -1,36 +1,30 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">carday</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    Hello
+    <li v-for="slide of slides" :key="slide.slug">
+      <NuxtLink :to="slide.slug">{{ slide.title }}</NuxtLink>
+    </li>
   </div>
 </template>
 
 <script>
 export default {
+  async fetch() {
+    const posts = await this.$content('slides').fetch()
+    this.slides = posts
+  },
+
+  data() {
+    return {
+      slides: [],
+    }
+  },
   head() {
     return {
-      script: [{ src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }],
-    };
+      script: [
+        { src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' },
+      ],
+    }
   },
 }
 </script>
