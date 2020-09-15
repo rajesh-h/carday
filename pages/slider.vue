@@ -73,7 +73,7 @@ export default {
       'https://source.unsplash.com/weekly?water',
       'https://source.unsplash.com/weekly?mountain',
       'https://source.unsplash.com/daily',
-      '/img/images/slide1.jpeg',
+      '/img/slide1.jpeg',
     ],
     vfTransitions: ['fade', 'cube', 'book', 'wave'],
     vfCaptions: [
