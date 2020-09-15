@@ -6,7 +6,7 @@
         :options="vfOptions"
         :images="slideImages"
         :transitions="vfTransitions"
-        :captions="vfCaptions"
+        :captions="slideCaptions"
       >
         <template v-slot:preloader>
           <flux-preloader />
@@ -29,7 +29,7 @@
         </template>
       </vue-flux>
 
-      <button @click="$refs.slider.show('next')">NEXT</button>
+      <!-- <button @click="$refs.slider.show('next')">NEXT</button> -->
     </client-only>
   </div>
 </template>
@@ -57,7 +57,7 @@ export default {
   },
   props: {
     slidesData: {
-      type: Object,
+      type: Array,
       default: null,
     },
   },
@@ -68,24 +68,26 @@ export default {
       autohideTime: 2500,
       autoplay: true,
       bindKeys: false,
+      width: 800,
+      height: 400,
       delay: 5000,
       enableGestures: false,
       infinite: true,
       lazyLoad: true,
       lazyLoadAfter: 3,
     },
-    vfImages: [
-      'https://source.unsplash.com/weekly?water',
-      'https://source.unsplash.com/weekly?mountain',
-      'https://source.unsplash.com/daily',
-      '/img/slide1.jpeg',
-    ],
+    // vfImages: [
+    //   'https://source.unsplash.com/weekly?water',
+    //   'https://source.unsplash.com/weekly?mountain',
+    //   'https://source.unsplash.com/daily',
+    //   '/img/slide1.jpeg',
+    // ],
     vfTransitions: ['fade', 'cube', 'book', 'wave'],
-    vfCaptions: [
-      'Caption for image 1',
-      'Caption for image 2',
-      'Caption for image 3',
-    ],
+    // vfCaptions: [
+    //   'Caption for image 1',
+    //   'Caption for image 2',
+    //   'Caption for image 3',
+    // ],
   }),
   computed: {
     slideImages() {
@@ -94,6 +96,13 @@ export default {
         images.push(this.slidesData[i].thumbnail)
       }
       return images
+    },
+    slideCaptions() {
+      const captions = []
+      for (let i = 0; i < this.slidesData.length; i++) {
+        captions.push(this.slidesData[i].description)
+      }
+      return captions
     },
   },
 }

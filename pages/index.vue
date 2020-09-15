@@ -1,19 +1,18 @@
 <template>
-  <div class="container">
+  <div class="container mx-auto">
+    <Header class="flow-root" />
     <Slider :slides-data="slidesData" />
-    <!-- Hello
-    <li v-for="slide of slides" :key="slide.slug">
-      <NuxtLink :to="slide.slug">{{ slide.title }}</NuxtLink>
-    </li> -->
   </div>
 </template>
 
 <script>
+import Header from '~/components/Header'
 import Slider from '~/components/Slider'
 
 export default {
   components: {
     Slider,
+    Header,
   },
   async asyncData({ $content, params }) {
     const slidesData = await $content('slides')
@@ -42,9 +41,9 @@ export default {
 }
 */
 .container {
+  max-width: 100%;
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
